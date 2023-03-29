@@ -38,7 +38,7 @@ colors = [
 for index, ligne in csv_data.iterrows():
     xr = ligne["red"]
     yg = ligne["green"]
-    zb = ligne["blue"]    
+    zb = ligne["blue"]
     m = 'o'
     ax.scatter(xr, yg, zb, marker=m, c=colors[ligne["choice"]])
 
