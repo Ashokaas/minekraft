@@ -42,7 +42,7 @@ class MinetestKNN:
                 most_common_choice = choice
                 highest_count = choice_counts[choice]
                 
-        return most_common_choice
+        return int(most_common_choice)
         
 
     def send_message(self, message:str):
@@ -91,12 +91,13 @@ class MinetestKNN:
                 print(w, h, col, pixel)
                 if col != 0:
                     print(col)
-                    self.set_block(w+150, 200-h, 30, col)
+                    self.set_block(w+250, 200-h, 30, col)
+
         self.close_socket()
 
 
 susamongus = MinetestKNN()
 susamongus.open("minetest_colors.csv")
 susamongus.poser_image("amongus.jpg")
-print("OUI")
+
 print(susamongus.find_closest_brick_color(0, 0, 0, 23))
