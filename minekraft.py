@@ -98,5 +98,5 @@ class MinetestKNN:
 susamongus = MinetestKNN()
 susamongus.open("minetest_colors.csv")
 susamongus.poser_image("amongus.jpg")
-PRINT("OUI")
+print("OUI")
 print(susamongus.find_closest_brick_color(0, 0, 0, 23))
