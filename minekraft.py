@@ -98,12 +98,12 @@ class MinetestKNN:
                 pixel = image.getpixel((w, h))
                 col = self.find_closest_brick_color(pixel[0], pixel[1], pixel[2], 5)
                 print(w, h, col, pixel)
-                if col != 0:
+                if True:
                     print(col)
                     z = self.convert_to_grayscale(pixel[0], pixel[1], pixel[2]) // 25
                     for e in range(int(z)):
-                        self.set_block(w + 400, 200 - h, 70 + e, col)
-                    self.set_block(w+0, 10-h, 0+int(z), col)
+                        self.set_block(w + 300, 50 - h, 0 + e, col)
+                    self.set_block(w+300, 50-h, 0+int(z), col)
 
         self.close_socket()
 
@@ -112,5 +112,6 @@ susamongus = MinetestKNN()
 susamongus.open_socket()
 susamongus.open("minetest_colors.csv")
 susamongus.poser_image("amongus.jpg")
+susamongus.set_block(0, 0, 0, 6)
 #susamongus.set_blocks(-500, -500, -500, 1000, 1000, 1000)
 print(susamongus.find_closest_brick_color(0, 0, 0, 23))
