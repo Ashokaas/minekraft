@@ -78,6 +78,15 @@ class MinetestKNN:
         self.ma_socket.send(requete.encode())
 
 
+    def set_blocks(self, x1, y1, z1, x2, y2, z2, block_id=0, block_data=0):
+        requete = f"world.setBlocks({x1}, {y1}, {z1}, {x2}, {y2}, {z2} {block_id}, {block_data})\n"
+
+        self.ma_socket.send(requete.encode())
+
+
+    def convert_to_grayscale(self, r, g, b):
+        return r*0.3 + g*0.59 + b*0.11
+
 
     def poser_image(self, img_path:str):
         self.open_socket()
@@ -91,13 +100,17 @@ class MinetestKNN:
                 print(w, h, col, pixel)
                 if col != 0:
                     print(col)
-                    self.set_block(w+250, 200-h, 30, col)
+                    z = self.convert_to_grayscale(pixel[0], pixel[1], pixel[2]) // 25
+                    for e in range(int(z)):
+                        self.set_block(w + 400, 200 - h, 70 + e, col)
+                    self.set_block(w+0, 10-h, 0+int(z), col)
 
         self.close_socket()
 
 
 susamongus = MinetestKNN()
+susamongus.open_socket()
 susamongus.open("minetest_colors.csv")
 susamongus.poser_image("amongus.jpg")
-
+#susamongus.set_blocks(-500, -500, -500, 1000, 1000, 1000)
 print(susamongus.find_closest_brick_color(0, 0, 0, 23))
